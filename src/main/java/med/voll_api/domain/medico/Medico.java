@@ -1,8 +1,9 @@
-package med.voll_api.paciente;
-
+package med.voll_api.domain.medico;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,15 +13,15 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll_api.direccion.Direccion;
+import med.voll_api.domain.direccion.Direccion;
 
-@Table(name = "pacientes")
-@Entity(name = "Paciente")
+@Table(name = "medicos")
+@Entity(name = "Medico")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Paciente {
+public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,22 +29,26 @@ public class Paciente {
     private String nombre;
     private String email;
     private String telefono;
-    private String documentoIdentidad;
+    private String documento;
+
+    @Enumerated(EnumType.STRING)
+    private Especialidad especialidad;
 
     @Embedded
     private Direccion direccion;
 
-    public Paciente(DatosRegistroPaciente datos) {
+    public Medico(DatosRegistroMedico datos) {
         this.id = null;
         this.activo = true;
         this.nombre = datos.nombre();
         this.email = datos.email();
         this.telefono = datos.telefono();
-        this.documentoIdentidad = datos.documento_identidad();
+        this.documento = datos.documento();
+        this.especialidad = datos.especialidad();
         this.direccion = new Direccion(datos.direccion());
     }
 
-    public void actualizarDatos(@Valid DatosActualizacionPaciente datos) {
+    public void actualizarDatos(@Valid DatosActualizacionMedico datos) {
         if (datos.nombre() != null) {
             this.nombre = datos.nombre();
         }
@@ -59,3 +64,4 @@ public class Paciente {
         this.activo = false;
     }
 }
+

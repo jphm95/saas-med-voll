@@ -1,7 +1,7 @@
-package med.voll_api.medico;
+package med.voll_api.domain.medico;
 
 import jakarta.validation.constraints.NotNull;
-import med.voll_api.direccion.DatosDireccion;
+import med.voll_api.domain.direccion.DatosDireccion;
 
 public record DatosActualizacionMedico(
         @NotNull Long id,
