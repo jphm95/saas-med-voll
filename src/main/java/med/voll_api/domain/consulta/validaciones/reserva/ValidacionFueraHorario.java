@@ -1,10 +1,12 @@
-package med.voll_api.domain.consulta.validaciones;
+package med.voll_api.domain.consulta.validaciones.reserva;
 
 import med.voll_api.domain.ValidacionExcpetion;
 import med.voll_api.domain.consulta.DatosReservaConsulta;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
+@Component
 public class ValidacionFueraHorario implements ValidadorDeConsultas {
 
     public void validar(DatosReservaConsulta datos) {

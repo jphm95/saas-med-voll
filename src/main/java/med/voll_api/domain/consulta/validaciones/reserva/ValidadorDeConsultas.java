@@ -1,4 +1,4 @@
-package med.voll_api.domain.consulta.validaciones;
+package med.voll_api.domain.consulta.validaciones.reserva;
 
 import med.voll_api.domain.consulta.DatosReservaConsulta;
 
